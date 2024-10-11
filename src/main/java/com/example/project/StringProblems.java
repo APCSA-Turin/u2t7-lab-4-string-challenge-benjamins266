@@ -9,7 +9,14 @@ public class StringProblems{
     // endsLy("y") → false
     // endsLy("oddy") → false
     public boolean endsLy(String x){
-            //implement code here
+            int length = x.length();
+
+            if(length <2){
+                return false;
+            }
+            if(x.substring(length-2).equals("ly")){
+                return true;
+            }
         return false;
     }
 
@@ -21,10 +28,12 @@ public class StringProblems{
     // conCat("dog", "cat") → "dogcat"
     // conCat("abc", "") → "abc"
     public String conCat(String s1, String s2){
-        //implement code here
-        return "";
-    }
+        if (s1.length()>0 && s2.length()>0 && s1.charAt(s1.length()-1) == s2.charAt(0)){ //I learned about charAt at https://stackoverflow.com/questions/33223716/charat-function
+            return s1 +s2.substring(1);
 
+        }
+        return s1+s2;
+    }
     // Given a string, return a version without the first 2 chars. 
     // Except keep the first char if it is 'a' and keep the second char if it is 'b'. 
     // The string may be any length. Harder than it looks.
@@ -34,8 +43,14 @@ public class StringProblems{
     // deFront("aapple") -> "apple"
     // deFront("abeep") -> "abeep"
     public String deFront(String s1){
-        //implement code here
-        return "";
+        String whole = "";
+        if(s1.substring(0,1).equals("a")){
+            whole += "a";
+        }
+        if(s1.substring(1,2).equals("b")){
+            whole += "b" ;
+        }
+        return whole + s1.substring(2);
     }
 
     
@@ -46,7 +61,16 @@ public class StringProblems{
     // withoutX("xHi") → "Hi"
     // withoutX("Hxix") → "Hxi"
     public String withoutX(String s1){
-        return "";
+        
+        int ending = s1.length();
+        if(s1.startsWith("x")){
+            s1 = s1.substring(1,ending);
+            ending--;
+        }
+        if(s1.endsWith("x")){
+            s1= s1.substring(0,ending-1);
+        }
+        return s1;
     }
 
     // Given a string str, if the string starts with "f" return "Fizz".
@@ -56,8 +80,18 @@ public class StringProblems{
     // fizzString("fig") → "Fizz"
     // fizzString("dib") → "Buzz"
     // fizzString("fib") → "FizzBuzz"
-    public String fizzString(String s1){
-        return "";
+    public String fizzString(String s1){ //I learned about startsWith and endsWith at https://stackoverflow.com/questions/834303/startswith-and-endswith-functions-in-php
+        String str1 = "";
+        if(s1.startsWith("f")){
+            str1 += "Fizz";
+        }if(s1.endsWith("b")){
+            str1 += "Buzz";
+        }
+        if (!s1.startsWith("f") && !s1.endsWith("b")) {
+            str1 += s1;
+        }
+        
+        return str1;
     }
 
     // Given an int n, return the string form of the number followed 
@@ -70,6 +104,18 @@ public class StringProblems{
     // fizzString2(2) → "2!"
     // fizzString2(3) → "Fizz!"
     public String fizzString2(int x){
-        return "";
+        String num = "";
+        
+        if(x%3 == 0){
+            num += "Fizz";
+        }
+        if(x%5 == 0){
+            num += "Buzz";
+        }
+        if(x%3 != 0 && x%5 != 0){
+            num += x;
+        }
+
+        return num + "!";
     }
 }
